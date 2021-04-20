@@ -24,21 +24,22 @@ Given("I login with creds username & password", () => {
     LoginPage.clickOnLoginBtn()
     Logo.expect().toBeVisible()
 })
-When(/I fill "([^"]*)" in search field$/, (institutionName) => {
-    InstitutionLRAPHistory.searchInstitutionName(institutionName)
-})
-When(/I choose "([^"]*)" institute$/, (institutionFullName) => {
-    Institution.expect().toBeVisible()
-    Institution.expect().toHaveExpectedName(institutionFullName)
-    InstitutionLRAPHistory.clickOnResult()
-})
-Then('I check institute information modal is opened', () => {
-    Institution.expect().informationModaltoBeVisible()
+
+When ("I create new institution", () => {
+    InstitutionLRAPHistory.clickOnNewButton()
+    InstitutionLRAPHistory.fillSchoolNameField()
+    InstitutionLRAPHistory.fillCityField()
+    InstitutionLRAPHistory.fillStateField()
+    InstitutionLRAPHistory.fillShortNameField()
+    InstitutionLRAPHistory.selectStatus()
+    InstitutionLRAPHistory.fillContractDateField()
+    InstitutionLRAPHistory.fillIDField()
+    InstitutionLRAPHistory.checkTestInstitutionCheckbox()
+    InstitutionLRAPHistory.clickOnSaveButton()
 })
 
-
-When('I clean LRAP history', () => {
-    InstitutionLRAPHistory.checkLRAPHistory()
+Then("I check added institution modal is opened", () => {
+    Institution.expect().institutionFormModalToBeVisible()
 })
 
 When('I click on the "New" button to create new history', () => {
@@ -78,6 +79,13 @@ Then('I check award process setup information', () => {
 When('I go to "History" tab', () => {
     InstitutionLRAPHistory.clickOnHistoryTab()
 })
+Then ('I go to "History" tab and delete institution', () => {
+    InstitutionLRAPHistory.clickOnHistoryTab()
+    InstitutionLRAPHistory.clickOnInstitutionDeleteButton()
+    Institution.expect().institutionDeleteSuccessMessagedToBeVisible()
+})
+
+
 
 
 
@@ -106,6 +114,20 @@ When('I check institution award dates for second institution', () => {
 When('I check award process setup information for second institution', () => {
     InstitutionLRAPHistory.selectCorrectAwardCohort(secondCohort)
     Institution.expect().toHaveCorrectInformation(institutionApShortName, institutionStudentTypeDescription)
+})
+
+Given('I create new LRAP history', () => {
+    InstitutionLRAPHistory.clickOnHistoryCreationButton()
+    Institution.expect().modalToBeVisible()
+    InstitutionLRAPHistory.fillApShortNameField(institutionApShortName)
+    InstitutionLRAPHistory.fillStudentTypeDescriptionField(institutionStudentTypeDescription)
+    InstitutionLRAPHistory.selectOptions(cohort)
+    InstitutionLRAPHistory.fillIntroStudentsField()
+    InstitutionLRAPHistory.fillUITField()
+    InstitutionLRAPHistory.fillLITField()
+    InstitutionLRAPHistory.fillFeeTable()
+    Institution.expect().toBeEnabled()
+    InstitutionLRAPHistory.clickOnSaveButton()
 })
 
 When('I select "2019 - 2020" cohort', () => {

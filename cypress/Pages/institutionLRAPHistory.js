@@ -8,12 +8,44 @@ class InstitutionLRAPHistory {
         return cy.get('[style="font-size: 16px;"]')
     }
 
-    static searchInstitutionName(institutionName) {
-        cy.get('[id*="search"]').type(institutionName)
+    static institutionFormModal () {
+        return cy.get('[id="InstitutionFormModal"]')
     }
 
-    static clickOnResult() {
-        cy.get('[class*= "tt-menu"] [style*="font"]').click()
+    static clickOnNewButton () {
+        cy.get('[class="portlet-title"] [class*="btn btn-default "]').click()
+    }
+
+    static fillSchoolNameField () {
+        cy.get('[name="institutionName"]:visible').type('GdrSchool')
+    }
+
+    static fillCityField (){
+        cy.get('[name="city"]:visible').type('Ohio city')
+    }
+
+    static fillStateField () {
+        cy.get('[name="statProvince"]:visible').type('Ohio')
+    }
+
+    static fillShortNameField () {
+        cy.get('[name="shortName"]:visible').type('GDR')
+    }
+
+    static selectStatus () {
+        cy.get('[name="status"]:visible').select('Active')
+    }
+
+    static fillContractDateField () {
+        cy.get('[name="contractDate"]:visible').type('20.04.2019')
+    }
+
+    static fillIDField () {
+        cy.get('[name="ipedsId"]:visible').type('1')
+    }
+
+    static checkTestInstitutionCheckbox () {
+        cy.get('[name="testFlag"]:visible').click()
     }
 
     static searchedResult() {
@@ -120,25 +152,6 @@ class InstitutionLRAPHistory {
 
     }
 
-    static cleanLRAPHistory() {
-        cy.get('[class="portlet-body form"] [class="fa fa-times-circle"]').then((elem) => {
-            for (let index = 0; index < elem.length; index++) {
-                cy.get('[class="portlet-body form"] [class="fa fa-times-circle"]').eq(elem.length - 1 - index ).scrollIntoView().should('be.visible').click()
-                cy.get('[class="btn red"]:visible').click()
-            }
-        })
-    }
-
-    static checkLRAPHistory() {
-        cy.wait(1000)
-        cy.get('[class="fa fa-times-circle"]').then(($elem) => {
-            let elementLength = $elem.length
-            if (elementLength > 1) {
-                this.cleanLRAPHistory()
-            }
-        })
-    }
-
     static capAndWaitlistTab() {
         return cy.get('[data-toggle="tab"]').eq(1).scrollIntoView()
     }
@@ -149,6 +162,15 @@ class InstitutionLRAPHistory {
 
     static clickOnHistoryTab (){
         cy.get('[data-toggle="tab"]').eq(0).scrollIntoView().click()
+    }
+
+    static clickOnInstitutionDeleteButton () {
+        cy.get('[class="portlet-title"] [data-toggle="modal"]').eq(1).click()
+        cy.get('[class="btn red"]:visible').click()
+    }
+
+    static institutionDeleteSuccessMessage (){
+        return cy.get('[class="toast-message"]')
     }
 
     static capTabCohortSelector() {

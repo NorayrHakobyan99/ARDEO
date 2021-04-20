@@ -4,25 +4,19 @@ export const Institution = class InstitutionName {
 
     static expect() {
         return {
-            informationModaltoBeVisible: () => {
-                InstitutionLRAPHistory.instituteInformationModal()
-                    .should('be.visible')
-            },
-
             modalToBeVisible: () => {
                 InstitutionLRAPHistory.institutionStudentTypeModal()
                     .should('be.visible')
                     .and('contain.text', 'Institution Student Type')
             },
-
-            toBeVisible: () => {
-                InstitutionLRAPHistory.searchedResult()
+            institutionFormModalToBeVisible: () =>{
+                InstitutionLRAPHistory.institutionFormModal()
                     .should('be.visible')
-            },
-
-            toHaveExpectedName: (institutionName) => {
-                InstitutionLRAPHistory.searchedResult()
-                    .should("contain.text", institutionName)
+        },
+            institutionDeleteSuccessMessagedToBeVisible: () => {
+              InstitutionLRAPHistory.institutionDeleteSuccessMessage()
+                  .should('be.visible')
+                  .and('contain.text', 'Record deleted successfully')
             },
 
             toBeEnabled: () => {
