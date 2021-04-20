@@ -7,7 +7,8 @@ Feature: LRAP history
     Then I check institute information modal is opened
 
   Scenario: Adding new LRAP histories with same names and different cohorts
-    Given I click on the "New" button to create new history
+    Given I clean LRAP history
+    And I click on the "New" button to create new history
     And I fill "Institution Student Type" fields
     When I click on "save" button
     Then I go to "Cap & Waitlist" tab
@@ -31,5 +32,4 @@ Feature: LRAP history
     And I click on "Save" button
     And I check the photos is added
     When I click on "Close" button
-    Then I go to "History" tab and clean LRAP history
 

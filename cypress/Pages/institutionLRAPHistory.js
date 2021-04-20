@@ -123,8 +123,7 @@ class InstitutionLRAPHistory {
     static cleanLRAPHistory() {
         cy.get('[class="portlet-body form"] [class="fa fa-times-circle"]').then((elem) => {
             for (let index = 0; index < elem.length; index++) {
-                cy.wait(1000)
-                cy.get('[class="portlet-body form"] [class="fa fa-times-circle"]').eq(0).should('be.visible').click()
+                cy.get('[class="portlet-body form"] [class="fa fa-times-circle"]').eq(elem.length - 1 - index ).scrollIntoView().should('be.visible').click()
                 cy.get('[class="btn red"]:visible').click()
             }
         })

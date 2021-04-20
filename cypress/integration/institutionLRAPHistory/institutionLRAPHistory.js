@@ -37,9 +37,8 @@ Then('I check institute information modal is opened', () => {
 })
 
 
-When('I go to "History" tab and clean LRAP history', () => {
-    InstitutionLRAPHistory.clickOnHistoryTab()
-    InstitutionLRAPHistory.cleanLRAPHistory()
+When('I clean LRAP history', () => {
+    InstitutionLRAPHistory.checkLRAPHistory()
 })
 
 When('I click on the "New" button to create new history', () => {
