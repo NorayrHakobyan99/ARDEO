@@ -32,7 +32,7 @@ workflows:
   periodical:
     triggers:
       - schedule:
-          cron: "0,9 * * * *"
+          cron: "0,28 * * * *"
           filters:
             branches:
               only:
