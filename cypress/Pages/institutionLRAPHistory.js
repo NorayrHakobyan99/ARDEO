@@ -141,7 +141,6 @@ class InstitutionLRAPHistory {
     }
 
     static capAndWaitlistTab() {
-
         return cy.get('[data-toggle="tab"]').eq(1).scrollIntoView()
     }
 
@@ -166,7 +165,7 @@ class InstitutionLRAPHistory {
     }
 
     static clickOnAwardProcessSetupTab() {
-        cy.get('[data-toggle="tab"]').eq(4).click()
+        cy.get('[data-toggle="tab"]').eq(4).scrollIntoView().click()
     }
 
     static selectCorrectAwardCohort(cohort) {
